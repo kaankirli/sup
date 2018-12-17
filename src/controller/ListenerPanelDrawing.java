@@ -15,9 +15,6 @@ public class ListenerPanelDrawing extends MouseAdapter {
 	private int brushSize;
 	private static PanelDrawing panelDrawing;
 	private static Graphics graphics;
-	private PanelBrush panelBrush;
-
-	private JPanel testPanel;
 
 	public ListenerPanelDrawing(JPanel panel) {
 		if (panel instanceof PanelDrawing) {
@@ -33,31 +30,13 @@ public class ListenerPanelDrawing extends MouseAdapter {
 			graphics.setColor(Color.WHITE);
 			graphics.fillRect(0, 0, panelDrawing.getWidth(), panelDrawing.getHeight());
 
-			panelBrush = new PanelBrush(brushSize, Color.GRAY);
-
-			testPanel = new JPanel() {
-
-				public void paintComponent(Graphics g) {
-					g.setColor(Color.GRAY);
-					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-					g.drawOval(0, 0, 20, 20);
-				}
-			};
-
-			panelDrawing.add(testPanel, 0);
-
 		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		brushSize = Integer.parseInt(TextFieldBrushSize.getInstance().getText());
-		panelBrush.setLocation(e.getX() - brushSize / 2,
-				e.getY() - brushSize / 2);
-		panelBrush.setSize(brushSize);
-		panelDrawing.add(panelBrush, 0);
 		panelDrawing.repaint();
-		testPanel.setBounds(300, 300, 20, 20);
 		panelDrawing.repaint();
 	}
 
