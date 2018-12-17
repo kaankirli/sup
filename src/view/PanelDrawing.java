@@ -11,9 +11,6 @@ public class PanelDrawing extends JPanel {
 	public PanelDrawing() {
 		setLayout(null);
 		setBackground(Color.WHITE);
-		JButton button = new JButton();
-		button.setBounds(10,10,100,100);
-		add(button, 0);
 	}
 
 	public void setImage(BufferedImage bufferedImage) {
