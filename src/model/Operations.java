@@ -9,7 +9,10 @@ import javax.swing.*;
 public class Operations {
 
 	public Operations(JPanel panel) {
-		if (panel instanceof PanelDrawing)
-			panel.addMouseMotionListener(new ListenerPanelDrawing(panel));
+		if (panel instanceof PanelDrawing) {
+			ListenerPanelDrawing listenerPanelDrawing = new ListenerPanelDrawing(panel);
+			panel.addMouseMotionListener(listenerPanelDrawing);
+			panel.addMouseListener(listenerPanelDrawing);
+		}
 	}
 }

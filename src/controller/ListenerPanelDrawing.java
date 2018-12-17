@@ -37,11 +37,17 @@ public class ListenerPanelDrawing extends MouseAdapter {
 	public void mouseMoved(MouseEvent e) {
 		brushSize = Integer.parseInt(TextFieldBrushSize.getInstance().getText());
 		panelDrawing.repaint();
-		panelDrawing.repaint();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		graphics.setColor(Color.BLACK);
+		graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
+		panelDrawing.repaint();
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		graphics.setColor(Color.BLACK);
 		graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
 		panelDrawing.repaint();
