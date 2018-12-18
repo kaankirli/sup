@@ -32,7 +32,7 @@ public class FrameMain extends JFrame {
 
 	}
 	public void setBrushSize(int size) {
-        	panelBrush.setSize(size);}
+        	panelBrush.setSBrushize(size);}
 
     	public int getBrushSize(){
        		return panelBrush.getBrushSize();
