@@ -23,7 +23,7 @@ public class CUPTest {
     @Test
     public void testBrushSizeSetter() {
         FrameMain frameMain = new FrameMain();
-        frameMain.setSize(10);
+        frameMain.setBrushSize(10);
         assertEquals(10, frameMain.getBrushSize());
 
     }
