@@ -3,7 +3,7 @@ package test;
 import view.ButtonClear;
 import view.FrameMain;
 
-public class Test {
+public class Main {
 
 	public static void main(String[] args) {
 
