@@ -27,7 +27,12 @@ public class FrameMain extends JFrame {
 		add(panelDrawing);
 		add(panelTop);
 
-		Operations operations = new Operations(panelDrawing);
+		Operations operations = new Operations();
+		operations.addListenerTo(panelDrawing);
+
+		JButton button = new JButton();
+		button.setBounds(10,10,100,100);
+		panelDrawing.add(button, 0);
 
 	}
 }

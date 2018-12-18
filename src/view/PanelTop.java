@@ -32,5 +32,8 @@ public class PanelTop extends JPanel {
 
 		add(TextFieldBrushSize.getInstance());
 		add(buttonClear);
+
+		Operations operations = new Operations();
+		operations.addListenerTo(buttonClear, panelDrawing);
 	}
 }

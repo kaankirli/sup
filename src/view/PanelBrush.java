@@ -6,15 +6,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 public class PanelBrush extends JPanel {
 
-	private int size;
-	private Color color;
+	private int size = 20;
 
-	public PanelBrush(int size, Color color) {
-		this.size = size;
-		this.color = color;
+	public PanelBrush() {
 		this.setBounds(0, 0, size, size);
 	}
 
@@ -22,8 +20,19 @@ public class PanelBrush extends JPanel {
 		this.size = size;
 	}
 
+	public BufferedImage createImage() {
+
+		int w = size;
+		int h = size;
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = bi.createGraphics();
+		this.paint(g);
+		g.dispose();
+		return bi;
+	}
+
 	public void paintComponent(Graphics g) {
-		g.setColor(color);
+		g.setColor(Color.GRAY);
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawOval(0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
