@@ -19,6 +19,10 @@ public class PanelBrush extends JPanel {
 	public void setSize(int size) {
 		this.size = size;
 	}
+	
+	public in getSize(){
+		return size;
+	}
 
 	public BufferedImage createImage() {
 
