@@ -19,6 +19,7 @@ public class PanelDrawing extends JPanel {
 
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		try {
 			g.drawImage(bufferedImage, 0, 0, this);

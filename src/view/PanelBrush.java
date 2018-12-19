@@ -25,12 +25,13 @@ public class PanelBrush extends JPanel {
 		int w = size;
 		int h = size;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g = bi.createGraphics();
-		this.paint(g);
+		Graphics g = bi.createGraphics();
+		this.paintComponent(g);
 		g.dispose();
 		return bi;
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.GRAY);
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
