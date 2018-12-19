@@ -53,14 +53,14 @@ public class ListenerPanelDrawing extends MouseAdapter {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		graphics.setColor(Color.BLACK);
+		graphics.setColor(ListenerButtonColor.cursorColor);
 		graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
 		panelDrawing.repaint();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		graphics.setColor(Color.BLACK);
+		graphics.setColor(ListenerButtonColor.cursorColor);
 		graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
 		panelDrawing.repaint();
 	}
