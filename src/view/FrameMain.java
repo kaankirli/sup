@@ -31,10 +31,4 @@ public class FrameMain extends JFrame {
 		operations.addListenerTo(panelDrawing);
 
 	}
-	public void setBrushSize(int size) {
-        	panelBrush.setSBrushSize(size);}
-
-    	public int getBrushSize(){
-       		return panelBrush.getBrushSize();
-    }
 }
