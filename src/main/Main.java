@@ -1,6 +1,5 @@
-package test;
+package main;
 
-import view.ButtonClear;
 import view.FrameMain;
 
 public class Main {
