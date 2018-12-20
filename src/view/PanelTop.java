@@ -27,8 +27,8 @@ public class PanelTop extends JPanel {
 		}
 
 		TextFieldBrushSize.getInstance().setBounds(20 + (++index) * 30,
-				20, 20, 20);
-		buttonClear.setBounds(20 + (++index) * 30, 20, 70, 20);
+				20, 40, 20);
+		buttonClear.setBounds(40 + (++index) * 30, 20, 70, 20);
 
 		add(TextFieldBrushSize.getInstance());
 		add(buttonClear);
