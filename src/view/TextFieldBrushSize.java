@@ -11,6 +11,7 @@ public class TextFieldBrushSize extends JTextField {
 	}
 
 	private TextFieldBrushSize() {
+		setHorizontalAlignment(RIGHT);
 		setText("20");
 	}
 	

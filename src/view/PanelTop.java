@@ -32,14 +32,17 @@ public class PanelTop extends JPanel {
 			add(buttonColor);
 		}
 
-		TextFieldBrushSize.getInstance().setBounds(20 + (++index) * 30,
-				20, 20, 20);
-		buttonClear.setBounds(20 + (++index) * 30, 20, 70, 20);
-		buttonCustomColor.setBounds(20 + (++index) * 35, 20, 120, 20);
+		TextFieldBrushSize.getInstance().setBounds(20 + (++index) * 30, 20, 40, 20);
+		buttonClear.setBounds(40 + (++index) * 30, 20, 70, 20);
 
 		add(TextFieldBrushSize.getInstance());
 		add(buttonClear);
 		add(buttonCustomColor);
+
+
+        ButtonPickImage buttonPickImage = new ButtonPickImage();
+        buttonPickImage.setBounds(90 + (++index) * 30, 20, 120, 20);
+        add(buttonPickImage);
 
 		Operations operations = new Operations();
 		operations.addListenerTo(buttonClear, panelDrawing);

@@ -46,7 +46,6 @@ public class ListenerPanelDrawing extends MouseAdapter {
 		brushSize = Integer.parseInt(TextFieldBrushSize.getInstance().getText());
 
 		//Change this directory with the file path of the cursor png in your pc and you'll be good to go
-
 		cursorImage = HelperImageBrush.readBrushFromFile("E:\\Arman's Files\\Eclipse Workspace\\sup\\src\\view\\default_cursor.png");
 		cursorImage = HelperImageBrush.setSize(cursorImage, brushSize);
 		brushCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImage, new Point(brushSize / 2, brushSize / 2), "brush cursor");
