@@ -2,6 +2,7 @@ package SQLConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -11,15 +12,16 @@ public class SQLiteConnection {
 
 	private static SQLiteConnection SQLITE = null;
 	private static Connection CONNECTION = null;
-	private static final String URL = "jdbc:sqlite:Colors.db";
+	// The URL will differ from PC to PC, but you only have to change the part between jdbc:sqlite: and /sup. (use the below backslashes for windows)
+	private static final String URL = "jdbc:sqlite:E://Arman's Files/Eclipse Workspace/sup/src/Colors.db";
 
 	private SQLiteConnection() {
 		try {
 			CONNECTION = DriverManager.getConnection(URL);
+			System.out.println("Connected");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Connected");
 	}
 
 	public static SQLiteConnection getInstance() {
@@ -35,9 +37,24 @@ public class SQLiteConnection {
 				+ name + "'" + ")";
 		try {
 			Statement statement = CONNECTION.createStatement();
-			statement.executeQuery(query);
-			JOptionPane.showMessageDialog(null, "Color " + name + " added successfully", "Info",
-					JOptionPane.INFORMATION_MESSAGE);
+			statement.executeUpdate(query);
+			JOptionPane.showMessageDialog(null, "Color " + name + " added successfully", "Info",JOptionPane.INFORMATION_MESSAGE);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getTables() {
+		String query = "SELECT * FROM custom_colors";
+		try {
+			Statement statement = CONNECTION.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			while (resultSet.next()) {
+				System.out.println("Red: " + resultSet.getInt(1)
+							 + ", Green: " + resultSet.getInt(2)
+							 + ", Blue: "  + resultSet.getInt(3)
+							 + ", Alpha: " + resultSet.getInt(4));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

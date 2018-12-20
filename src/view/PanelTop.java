@@ -68,18 +68,16 @@ public class PanelTop extends JPanel {
 	
 	private void saveCustomColor(Color color) {
 		try {
-		String name = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Info", JOptionPane.OK_CANCEL_OPTION);
-		int red = color.getRed();
-		int green = color.getGreen();
-		int blue = color.getBlue();
-		int alpha = color.getAlpha();
-		if (!name.isEmpty()) {
-			SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
-			connection.saveColor(red, green, blue, alpha, name);
-		}
-		//System.out.println("R: " + red + ", G: " + green + ", B: " + blue + ", A: " + alpha + ", Name: " + name);
-		} catch (NullPointerException e) {
-			
-		}
+			String name = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Info", JOptionPane.OK_CANCEL_OPTION);
+			int red = color.getRed();
+			int green = color.getGreen();
+			int blue = color.getBlue();
+			int alpha = color.getAlpha();
+			if (!name.isEmpty()) {
+				SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
+				connection.saveColor(red, green, blue, alpha, name);
+			}
+		} catch (NullPointerException e) { }
 	}
+	
 }

@@ -6,6 +6,8 @@ import view.FrameMain;
 import view.TextFieldBrushSize;
 import static org.junit.Assert.*;
 import java.sql.Connection;
+import java.sql.Statement;
+
 import org.junit.*;
 import SQLConnection.SQLiteConnection;
 
@@ -41,6 +43,11 @@ public class SupTest {
 		SQLiteConnection connection = SQLiteConnection.getInstance();
 		assertNotNull(connection);
 	}
-
-
+	
+	@Test
+	public void listTablesTest() {
+		SQLiteConnection connection = SQLiteConnection.getInstance();
+		connection.getTables();
+	}
+	
 }
