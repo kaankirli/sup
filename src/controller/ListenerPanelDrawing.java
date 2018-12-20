@@ -44,11 +44,15 @@ public class ListenerPanelDrawing extends MouseAdapter {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		brushSize = Integer.parseInt(TextFieldBrushSize.getInstance().getText());
+
+		//Change this directory with the file path of the cursor png in your pc and you'll be good to go
+
 		cursorImage = HelperImageBrush.readBrushFromFile("/home/gunes/eclipse-workspace/SuperPaint/src/view/default_cursor.png");
 		cursorImage = HelperImageBrush.setSize(cursorImage, brushSize);
 		brushCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImage, new Point(brushSize / 2, brushSize / 2), "brush cursor");
 		panelDrawing.setCursor(brushCursor);
 		panelDrawing.repaint();
+
 	}
 
 	@Override
