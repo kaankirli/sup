@@ -1,6 +1,6 @@
 package controller;
 
-import view.PanelBrush;
+import view.HelperImageBrush;
 import view.PanelDrawing;
 import view.TextFieldBrushSize;
 
@@ -12,11 +12,10 @@ import java.awt.image.BufferedImage;
 
 public class ListenerPanelDrawing extends MouseAdapter {
 
-	private static final PanelBrush PANEL_BRUSH = new PanelBrush();
-
 	private static int brushSize;
 	private static PanelDrawing panelDrawing;
 	private static Graphics graphics;
+	private BufferedImage cursorImage;
 	private Cursor brushCursor;
 
 	public ListenerPanelDrawing(JPanel panel) {
@@ -45,8 +44,9 @@ public class ListenerPanelDrawing extends MouseAdapter {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		brushSize = Integer.parseInt(TextFieldBrushSize.getInstance().getText());
-		PANEL_BRUSH.setSize(brushSize);
-		brushCursor = Toolkit.getDefaultToolkit().createCustomCursor(PANEL_BRUSH.createImage(), new Point(brushSize / 2, brushSize / 2), "brush cursor");
+		cursorImage = HelperImageBrush.readBrushFromFile("/home/gunes/eclipse-workspace/SuperPaint/src/view/default_cursor.png");
+		cursorImage = HelperImageBrush.setSize(cursorImage, brushSize);
+		brushCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImage, new Point(brushSize / 2, brushSize / 2), "brush cursor");
 		panelDrawing.setCursor(brushCursor);
 		panelDrawing.repaint();
 	}
