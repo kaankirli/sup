@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class SQLiteConnection {
 	
 	private static Connection CONNECTION = null;
-	private static final String URL = "jdbc:sqlite:Brushes.db";
+	private static final String URL = "jdbc:sqlite:Colors.db";
 	
 	private SQLiteConnection() {
 		
@@ -26,5 +26,7 @@ public class SQLiteConnection {
 		else
 			return CONNECTION;
 	}
+	
+	
 
 }

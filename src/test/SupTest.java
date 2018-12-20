@@ -1,29 +1,26 @@
 package test;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import view.FrameMain;
 import view.TextFieldBrushSize;
 import static org.junit.Assert.*;
-
 import java.sql.Connection;
-
 import org.junit.*;
-
 import SQLConnection.SQLiteConnection;
 
 public class SupTest {
 
 	static FrameMain frameMain;
 
-	@BeforeClass
+	@BeforeAll
 	public static void onceExecutedBeforeAll() {
 		frameMain = new FrameMain();
 	}
 
 	@Test
 	public void frameMainTest01() {
-		assertEquals(500, frameMain.getHeight());
-		assertEquals(1000, frameMain.getWidth());
+		assertNotNull(frameMain);
 	}
 
 	@Test
