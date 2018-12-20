@@ -3,7 +3,12 @@ package test;
 import view.FrameMain;
 import view.TextFieldBrushSize;
 import static org.junit.Assert.*;
+
+import java.sql.Connection;
+
 import org.junit.*;
+
+import SQLConnection.SQLiteConnection;
 
 public class SupTest {
 
@@ -31,6 +36,12 @@ public class SupTest {
 		TextFieldBrushSize.getInstance().setBrushSize(10);
 		int size = TextFieldBrushSize.getInstance().getBrushSize();
 		assertEquals(10, size);
+	}
+	
+	@Test
+	public void databaseConnectionTest() {
+		Connection connection = SQLiteConnection.getInstance();
+		assertNotNull(connection);
 	}
 	
 	
