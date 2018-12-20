@@ -33,6 +33,11 @@ public class PanelTop extends JPanel {
 		add(TextFieldBrushSize.getInstance());
 		add(buttonClear);
 
+
+        ButtonPickImage buttonPickImage = new ButtonPickImage();
+        buttonPickImage.setBounds(90 + (++index) * 30, 20, 120, 20);
+        add(buttonPickImage);
+
 		Operations operations = new Operations();
 		operations.addListenerTo(buttonClear, panelDrawing);
 	}
