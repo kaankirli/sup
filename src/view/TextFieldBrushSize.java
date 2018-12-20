@@ -14,12 +14,12 @@ public class TextFieldBrushSize extends JTextField {
 		setText("20");
 	}
 	
-	public int getBrushSize() {
+	public static int getBrushSize() {
 		String size = brushSize.getText();
 		return Integer.parseInt(size);
 	}
 	
-	public void setBrushSize(int size) {
+	public static void setBrushSize(int size) {
 		brushSize.setText("" + size);
 	}
 }
