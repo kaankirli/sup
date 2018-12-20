@@ -16,6 +16,7 @@ public class FrameMain extends JFrame {
 
 		setSize(1000, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		setLayout(null);
 
 		panelDrawing = new PanelDrawing();
