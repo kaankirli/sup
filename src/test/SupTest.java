@@ -38,7 +38,7 @@ public class SupTest {
 
 	@Test
 	public void databaseConnectionTest() {
-		Connection connection = SQLiteConnection.getInstance();
+		SQLiteConnection connection = SQLiteConnection.getInstance();
 		assertNotNull(connection);
 	}
 

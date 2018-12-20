@@ -4,9 +4,12 @@ import model.Operations;
 
 import javax.swing.*;
 
+import SQLConnection.SQLiteConnection;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.Connection;
 
 public class PanelTop extends JPanel {
 
@@ -54,11 +57,29 @@ public class PanelTop extends JPanel {
 		JPanel topPanel = new JPanel();
 		JButton saveColor = new JButton("Save Color");
 		JColorChooser colorChooser = new JColorChooser();
+		saveColor.addActionListener(e -> saveCustomColor(colorChooser.getColor()));
 		topPanel.add(saveColor);
 		frame.add(topPanel, BorderLayout.NORTH);
 		frame.add(colorChooser);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
+	}
+	
+	private void saveCustomColor(Color color) {
+		try {
+		String name = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Info", JOptionPane.OK_CANCEL_OPTION);
+		int red = color.getRed();
+		int green = color.getGreen();
+		int blue = color.getBlue();
+		int alpha = color.getAlpha();
+		if (!name.isEmpty()) {
+			SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
+			connection.saveColor(red, green, blue, alpha, name);
+		}
+		//System.out.println("R: " + red + ", G: " + green + ", B: " + blue + ", A: " + alpha + ", Name: " + name);
+		} catch (NullPointerException e) {
+			
+		}
 	}
 }
