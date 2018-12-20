@@ -46,7 +46,7 @@ public class ListenerPanelDrawing extends MouseAdapter {
 		brushSize = Integer.parseInt(TextFieldBrushSize.getInstance().getText());
 
 		//Change this directory with the file path of the cursor png in your pc and you'll be good to go
-		cursorImage = HelperImageBrush.readBrushFromFile("E:\\Arman's Files\\Eclipse Workspace\\sup\\src\\view\\default_cursor.png");
+		cursorImage = HelperImageBrush.readBrushFromFile("/home/gunes/eclipse-workspace/SuperPaint/src/view/default_cursor.png");
 		cursorImage = HelperImageBrush.setSize(cursorImage, brushSize);
 		brushCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImage, new Point(brushSize / 2, brushSize / 2), "brush cursor");
 		panelDrawing.setCursor(brushCursor);
@@ -56,15 +56,19 @@ public class ListenerPanelDrawing extends MouseAdapter {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		graphics.setColor(ListenerButtonColor.cursorColor);
-		graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
-		panelDrawing.repaint();
+		if (e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK) {
+			graphics.setColor(ListenerButtonColor.cursorColor);
+			graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
+			panelDrawing.repaint();
+		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		graphics.setColor(ListenerButtonColor.cursorColor);
-		graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
-		panelDrawing.repaint();
+		if (e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK) {
+			graphics.setColor(ListenerButtonColor.cursorColor);
+			graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
+			panelDrawing.repaint();
+		}
 	}
 }
