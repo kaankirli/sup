@@ -37,8 +37,6 @@ public class PanelTop extends JPanel {
 
 		add(TextFieldBrushSize.getInstance());
 		add(buttonClear);
-		add(buttonCustomColor);
-
 
         ButtonPickImage buttonPickImage = new ButtonPickImage();
         buttonPickImage.setBounds(90 + (++index) * 30, 20, 120, 20);
@@ -46,6 +44,9 @@ public class PanelTop extends JPanel {
 
 		Operations operations = new Operations();
 		operations.addListenerTo(buttonClear, panelDrawing);
+		
+		buttonCustomColor.setBounds(190 + (++index) * 30, 20, 120, 20);
+		add(buttonCustomColor);
 	}
 	
 	private void setColorSelectingFrame() {
