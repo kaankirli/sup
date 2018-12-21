@@ -1,8 +1,6 @@
 package view;
 
 import controller.ListenerButtonChooseCursor;
-import controller.ListenerButtonImportCursor;
-
 import javax.swing.*;
 import java.awt.*;
 

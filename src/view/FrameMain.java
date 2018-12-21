@@ -4,9 +4,6 @@ import model.Operations;
 
 import javax.swing.*;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 public class FrameMain extends JFrame {
 
 	private PanelDrawing panelDrawing;

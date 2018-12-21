@@ -1,10 +1,6 @@
 package controller;
 
-import view.ButtonClear;
-import view.PanelDrawing;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

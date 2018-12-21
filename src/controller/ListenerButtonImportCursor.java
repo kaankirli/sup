@@ -14,9 +14,6 @@ import org.apache.commons.io.*;
 
 public class ListenerButtonImportCursor implements ActionListener {
 
-
-	//System.getProperty("user.dir") + "/src/brushes"
-
 	private static BufferedImage brushImage;
 	private static String pathName = System.getProperty("user.dir") + "/src/brushes/";
 	private static String cursorFileName = "default_cursor.png";
@@ -31,7 +28,6 @@ public class ListenerButtonImportCursor implements ActionListener {
 
 
 			int returnValue = fileChooser.showOpenDialog(null);
-			// int returnValue = jfc.showSaveDialog(null);
 
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = fileChooser.getSelectedFile();
