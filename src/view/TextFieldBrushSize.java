@@ -14,14 +14,27 @@ public class TextFieldBrushSize extends JTextField {
 
 	private TextFieldBrushSize() {
 		setHorizontalAlignment(RIGHT);
-		setText("20");
+		setText("30");
 
 		addMouseWheelListener(new ListenerTextField());
 	}
 
 	public static int getBrushSize() {
-		String size = brushSize.getText();
-		return Integer.parseInt(size);
+		int size;
+		try {
+			size = Integer.parseInt(brushSize.getText());
+			if (size < 1) {
+				size = 1;
+				brushSize.setText("1");
+			} else if (size > 200) {
+				size = 200;
+				brushSize.setText("200");
+			}
+		} catch (Exception exception) {
+			setBrushSize(30);
+			size = 30;
+		}
+		return size;
 	}
 	
 	public static void setBrushSize(int size) {
