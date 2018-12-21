@@ -1,1 +1,0 @@
-This folder contains Source code and JUnit tests.
