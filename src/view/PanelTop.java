@@ -8,8 +8,6 @@ import SQLConnection.SQLiteConnection;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.sql.Connection;
 
 public class PanelTop extends JPanel {
 
@@ -41,15 +39,19 @@ public class PanelTop extends JPanel {
 		add(TextFieldBrushSize.getInstance());
 		add(buttonClear);
 
-        ButtonPickImage buttonPickImage = new ButtonPickImage();
-        buttonPickImage.setBounds(90 + (++index) * 30, 20, 120, 20);
-        add(buttonPickImage);
+        ButtonImportCursor buttonImportCursor = new ButtonImportCursor();
+        buttonImportCursor.setBounds(90 + (++index) * 30, 20, 120, 20);
+        add(buttonImportCursor);
+
+		ButtonChooseCursor buttonChooseCursor = new ButtonChooseCursor();
+		buttonChooseCursor.setBounds(190 + (++index) * 30, 20, 120, 20);
+		add(buttonChooseCursor);
+
+		buttonCustomColor.setBounds(290 + (++index) * 30, 20, 120, 20);
+		add(buttonCustomColor);
 
 		Operations operations = new Operations();
 		operations.addListenerTo(buttonClear, panelDrawing);
-		
-		buttonCustomColor.setBounds(190 + (++index) * 30, 20, 120, 20);
-		add(buttonCustomColor);
 	}
 	
 	private void setColorSelectingFrame() {

@@ -1,6 +1,6 @@
 package controller;
 
-import view.ButtonPickImage;
+import view.ButtonImportCursor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +12,7 @@ import javax.swing.filechooser.*;
 import javax.imageio.*;
 import org.apache.commons.io.*;
 
-public class ListenerButtonPickImage implements ActionListener {
+public class ListenerButtonImportCursor implements ActionListener {
 
 
 	//System.getProperty("user.dir") + "/src/brushes"
@@ -22,7 +22,7 @@ public class ListenerButtonPickImage implements ActionListener {
 	private static String cursorFileName = "default_cursor.png";
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() instanceof ButtonPickImage) {
+		if (e.getSource() instanceof ButtonImportCursor) {
 
 			JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 			FileFilter imageFilter = new FileNameExtensionFilter(
@@ -45,6 +45,10 @@ public class ListenerButtonPickImage implements ActionListener {
 				}
 			}
 		}
+	}
+
+	public static void setCursorFileName(String name) {
+		cursorFileName = name;
 	}
 
 	public static BufferedImage getBrushImage(){

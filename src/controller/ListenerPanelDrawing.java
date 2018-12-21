@@ -44,7 +44,7 @@ public class ListenerPanelDrawing extends MouseAdapter {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		brushSize = TextFieldBrushSize.getBrushSize();
-		cursorImage = ListenerButtonPickImage.getBrushImage();
+		cursorImage = ListenerButtonImportCursor.getBrushImage();
 		cursorImage = HelperImageBrush.setSize(cursorImage, brushSize);
 		brushCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImage, new Point(brushSize / 2, brushSize / 2), "brush cursor");
 		panelDrawing.setCursor(brushCursor);
