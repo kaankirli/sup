@@ -5,10 +5,6 @@ import org.junit.jupiter.api.Test;
 import view.FrameMain;
 import view.TextFieldBrushSize;
 import static org.junit.Assert.*;
-import java.sql.Connection;
-import java.sql.Statement;
-
-import org.junit.*;
 import SQLConnection.SQLiteConnection;
 
 public class SupTest {
