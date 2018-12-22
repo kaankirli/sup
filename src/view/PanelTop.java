@@ -73,6 +73,7 @@ public class PanelTop extends JPanel {
 		
 		saveColor.addActionListener(e -> saveColorClicked(colorChooser.getColor()));
 		selectCustomColor.addActionListener(e -> selectCustomColorClicked());
+		deleteCustomColor.addActionListener(e -> deleteCustomColor());
 		
 		topPanel.add(saveColor);
 		topPanel.add(selectCustomColor);
@@ -129,6 +130,19 @@ public class PanelTop extends JPanel {
 		selectColorFrame.pack();
 		selectColorFrame.setLocationRelativeTo(null);
 		selectColorFrame.setVisible(true);
+	}
+	
+	private void deleteCustomColor() {
+		try {
+			String colorName = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Delete Color", JOptionPane.OK_CANCEL_OPTION);
+			if (!colorName.isEmpty()) {
+				SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
+				connection.deleteColor(colorName);
+				JOptionPane.showMessageDialog(null, "Custom Color " + colorName + " has been deleted!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "Please enter a name!", "Warning", JOptionPane.WARNING_MESSAGE);
+			}
+		} catch (NullPointerException e) { }
 	}
 	
 }

@@ -81,5 +81,15 @@ public class SQLiteConnection {
 		}
 		return colors;
 	}
+	
+	public void deleteColor(String colorName) {
+		String query = "DELETE FROM custom_colors WHERE name='" + colorName + "';";
+		try {
+			Statement statement = CONNECTION.createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
