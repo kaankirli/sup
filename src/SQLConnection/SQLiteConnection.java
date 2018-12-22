@@ -61,7 +61,7 @@ public class SQLiteConnection {
 		}
 	}
 	
-	public HashMap<String, Color> getColorsArray() {
+	public HashMap<String, Color> getColorsMap() {
 		HashMap<String, Color> colors = new HashMap<String, Color>();
 		String query = "SELECT * FROM custom_colors";
 		try {
@@ -72,8 +72,9 @@ public class SQLiteConnection {
 				int green = resultSet.getInt(2);
 				int blue = resultSet.getInt(3);
 				int alpha = resultSet.getInt(3);
-				
 				String colorName = resultSet.getString(5);
+				Color color = new Color(red, green, blue, alpha);
+				colors.put(colorName, color);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

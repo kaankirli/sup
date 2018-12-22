@@ -3,17 +3,26 @@ package view;
 import model.Operations;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import SQLConnection.SQLiteConnection;
+import controller.ListenerButtonColor;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 public class PanelTop extends JPanel {
 
 	private ButtonClear buttonClear;
 	private ButtonCustomColor buttonCustomColor;
 	private Color[] colors = {Color.BLACK, Color.WHITE, Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.PINK};
+	HashMap<String, Color> customColors;
 
 	public PanelTop(PanelDrawing panelDrawing) {
 
@@ -61,8 +70,10 @@ public class PanelTop extends JPanel {
 		JButton selectCustomColor = new JButton("Select Custom Color");
 		JButton deleteCustomColor = new JButton("Delete Custom Color");
 		JColorChooser colorChooser = new JColorChooser();
+		
 		saveColor.addActionListener(e -> saveColorClicked(colorChooser.getColor()));
 		selectCustomColor.addActionListener(e -> selectCustomColorClicked());
+		
 		topPanel.add(saveColor);
 		topPanel.add(selectCustomColor);
 		topPanel.add(deleteCustomColor);
@@ -70,6 +81,7 @@ public class PanelTop extends JPanel {
 		customColorFrame.add(colorChooser);
 		customColorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		customColorFrame.pack();
+		customColorFrame.setLocationRelativeTo(null);
 		customColorFrame.setVisible(true);
 	}
 	
@@ -91,8 +103,31 @@ public class PanelTop extends JPanel {
 	
 	private void selectCustomColorClicked() {
 		JFrame selectColorFrame = new JFrame("Select Custom Color");
+		selectColorFrame.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = gbc.gridy = 0;
+		gbc.insets = new Insets(2, 2, 2, 2);
+		customColors = SQLiteConnection.getInstance().getColorsMap();
+		
+		for (int i = 0; i < customColors.size(); ++i) {
+			JLabel colorLable = new JLabel(customColors.keySet().toArray()[i].toString());
+			Border border = BorderFactory.createLineBorder(Color.BLACK);
+			colorLable.setBorder(border);
+			colorLable.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+					Color color = customColors.get(colorLable.getText());
+					ListenerButtonColor.cursorColor = color;
+					selectColorFrame.dispose();
+				}
+			});
+			selectColorFrame.add(colorLable, gbc);
+			gbc.gridy++;
+		}
 		
 		selectColorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		selectColorFrame.pack();
+		selectColorFrame.setLocationRelativeTo(null);
 		selectColorFrame.setVisible(true);
 	}
 	
