@@ -4,6 +4,8 @@ import model.Operations;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import SQLConnection.SQLiteConnection;
 import controller.ListenerButtonColor;
@@ -70,6 +72,12 @@ public class PanelTop extends JPanel {
 		JButton selectCustomColor = new JButton("Select Custom Color");
 		JButton deleteCustomColor = new JButton("Delete Custom Color");
 		JColorChooser colorChooser = new JColorChooser();
+		colorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				ListenerButtonColor.cursorColor = colorChooser.getColor();
+			}
+		});
 		
 		saveColor.addActionListener(e -> saveColorClicked(colorChooser.getColor()));
 		selectCustomColor.addActionListener(e -> selectCustomColorClicked());
