@@ -55,20 +55,25 @@ public class PanelTop extends JPanel {
 	}
 	
 	private void setColorSelectingFrame() {
-		JFrame frame = new JFrame("Color Select");
+		JFrame customColorFrame = new JFrame("Custom Color");
 		JPanel topPanel = new JPanel();
 		JButton saveColor = new JButton("Save Color");
+		JButton selectCustomColor = new JButton("Select Custom Color");
+		JButton deleteCustomColor = new JButton("Delete Custom Color");
 		JColorChooser colorChooser = new JColorChooser();
-		saveColor.addActionListener(e -> saveCustomColor(colorChooser.getColor()));
+		saveColor.addActionListener(e -> saveColorClicked(colorChooser.getColor()));
+		selectCustomColor.addActionListener(e -> selectCustomColorClicked());
 		topPanel.add(saveColor);
-		frame.add(topPanel, BorderLayout.NORTH);
-		frame.add(colorChooser);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
+		topPanel.add(selectCustomColor);
+		topPanel.add(deleteCustomColor);
+		customColorFrame.add(topPanel, BorderLayout.NORTH);
+		customColorFrame.add(colorChooser);
+		customColorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		customColorFrame.pack();
+		customColorFrame.setVisible(true);
 	}
 	
-	private void saveCustomColor(Color color) {
+	private void saveColorClicked(Color color) {
 		try {
 			String name = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Info", JOptionPane.OK_CANCEL_OPTION);
 			int red = color.getRed();
@@ -78,8 +83,17 @@ public class PanelTop extends JPanel {
 			if (!name.isEmpty()) {
 				SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
 				connection.saveColor(red, green, blue, alpha, name);
+			} else {
+				JOptionPane.showMessageDialog(null, "Please enter a name!", "Warning", JOptionPane.WARNING_MESSAGE);
 			}
 		} catch (NullPointerException e) { }
+	}
+	
+	private void selectCustomColorClicked() {
+		JFrame selectColorFrame = new JFrame("Select Custom Color");
+		
+		selectColorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		selectColorFrame.setVisible(true);
 	}
 	
 }

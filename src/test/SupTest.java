@@ -24,7 +24,7 @@ public class SupTest {
 	@Test
 	public void getBrushSizeTest01() {
 		int size = TextFieldBrushSize.getBrushSize();
-		assertEquals(20, size);
+		assertEquals(30, size);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class SupTest {
 	@Test
 	public void listTablesTest() {
 		SQLiteConnection connection = SQLiteConnection.getInstance();
-		connection.getTables();
+		connection.getColors();
 	}
 	
 }

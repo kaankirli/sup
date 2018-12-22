@@ -1,10 +1,12 @@
 package SQLConnection;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
@@ -43,7 +45,7 @@ public class SQLiteConnection {
 		}
 	}
 	
-	public void getTables() {
+	public void getColors() {
 		String query = "SELECT * FROM custom_colors";
 		try {
 			Statement statement = CONNECTION.createStatement();
@@ -57,6 +59,26 @@ public class SQLiteConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public HashMap<String, Color> getColorsArray() {
+		HashMap<String, Color> colors = new HashMap<String, Color>();
+		String query = "SELECT * FROM custom_colors";
+		try {
+			Statement statement = CONNECTION.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			while (resultSet.next()) {
+				int red = resultSet.getInt(1);
+				int green = resultSet.getInt(2);
+				int blue = resultSet.getInt(3);
+				int alpha = resultSet.getInt(3);
+				
+				String colorName = resultSet.getString(5);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return colors;
 	}
 
 }
