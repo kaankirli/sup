@@ -138,7 +138,6 @@ public class PanelTop extends JPanel {
 			if (!colorName.isEmpty()) {
 				SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
 				connection.deleteColor(colorName);
-				JOptionPane.showMessageDialog(null, "Custom Color " + colorName + " has been deleted!", "Info", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "Please enter a name!", "Warning", JOptionPane.WARNING_MESSAGE);
 			}
