@@ -12,7 +12,6 @@ public class SQLiteConnection {
 
 	private static SQLiteConnection SQLITE = null;
 	private static Connection CONNECTION = null;
-	// The URL will differ from PC to PC, but you only have to change the part between jdbc:sqlite: and /sup. (use the below backslashes for windows)
 	private static final String URL = "jdbc:sqlite:" + System.getProperty("user.dir") + "/src/Colors.db";
 
 	private SQLiteConnection() {
