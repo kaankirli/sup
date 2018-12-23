@@ -33,7 +33,7 @@ public class ListenerButtonSaveCanvas implements ActionListener {
 	public void saveImage(JPanel canvas) {
 		BufferedImage imagebuf = null;
 		try {
-			imagebuf = new Robot().createScreenCapture(canvas.bounds());
+			imagebuf = new Robot().createScreenCapture(canvas.getVisibleRect());
 		} catch (AWTException e1) {
 			e1.printStackTrace();
 		}
