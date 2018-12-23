@@ -55,8 +55,7 @@ public class ListenerPanelDrawing extends MouseAdapter {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK) {
-			graphics.setColor(ListenerButtonColor.cursorColor);
-			graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
+			graphics.drawImage(HelperImageBrush.paintFromBrush(cursorImage), e.getX() - brushSize / 2, e.getY() - brushSize / 2, panelDrawing);
 			panelDrawing.repaint();
 		}
 	}
@@ -64,8 +63,7 @@ public class ListenerPanelDrawing extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK) {
-			graphics.setColor(ListenerButtonColor.cursorColor);
-			graphics.fillOval(e.getX() - brushSize / 2, e.getY() - brushSize / 2, brushSize, brushSize);
+			graphics.drawImage(HelperImageBrush.paintFromBrush(cursorImage), e.getX() - brushSize / 2, e.getY() - brushSize / 2, panelDrawing);
 			panelDrawing.repaint();
 		}
 	}

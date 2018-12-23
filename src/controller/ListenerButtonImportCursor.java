@@ -2,9 +2,13 @@ package controller;
 
 import view.ButtonImportCursor;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
@@ -53,6 +57,14 @@ public class ListenerButtonImportCursor implements ActionListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+			ImageFilter filter = new GrayFilter(true, 0);
+			ImageProducer producer = new FilteredImageSource(brushImage.getSource(), filter);
+			Image grayBrush = Toolkit.getDefaultToolkit().createImage(producer);
+
+			brushImage = new BufferedImage(grayBrush.getWidth( null), grayBrush.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+			brushImage.getGraphics().drawImage(grayBrush, 0, 0, null);
+
 		return brushImage;
 	}
 }
