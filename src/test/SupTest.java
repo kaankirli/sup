@@ -46,4 +46,20 @@ public class SupTest {
 		connection.getColors();
 	}
 	
+	@Test
+	public void colorExistsTest01() {
+		SQLiteConnection connection = SQLiteConnection.getInstance();
+		connection.saveColor(100, 150, 100, 255, "TestColor");
+		boolean exists = connection.colorExists("TestColor");
+		assertTrue(exists);
+		connection.deleteColor("TestColor");
+	}
+	
+	@Test
+	public void colorExistsTest02() {
+		SQLiteConnection connection = SQLiteConnection.getInstance();
+		boolean exists = connection.colorExists("colorName");
+		assertFalse(exists);
+	}
+	
 }

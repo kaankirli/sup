@@ -32,6 +32,15 @@ public class SQLiteConnection {
 		} else
 			return SQLITE;
 	}
+	
+	public void disconnect() {
+		try {
+			CONNECTION.close();
+			System.out.println("Disconnected");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void saveColor(int red, int green, int blue, int alpha, String name) {
 		String query = "INSERT INTO custom_colors VALUES(" + red + "," + green + "," + blue + "," + alpha + "," + "'"
@@ -91,6 +100,19 @@ public class SQLiteConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean colorExists(String colorName) {
+		String query = "SELECT name FROM custom_colors WHERE name='" + colorName + "';";
+		try {
+			Statement statement = CONNECTION.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			if (resultSet.next())
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
