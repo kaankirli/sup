@@ -90,7 +90,4 @@ public class SupTest {
 		boolean exists = connection.colorExists("colorName");
 		assertFalse(exists);
 	}
-	
-	
-	
 }
