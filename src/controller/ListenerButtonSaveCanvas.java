@@ -44,18 +44,8 @@ public class ListenerButtonSaveCanvas implements ActionListener {
 		canvas.paint(graphics2D);
 
 		Date date = Calendar.getInstance().getTime();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh-mm-ss");
 		String dateString = dateFormat.format(date);
-
-		//Default save path -- Old solution
-        /*
-		File file = new File(pathName);
-		boolean exists = file.exists();
-		if (!exists) {
-
-			file.mkdirs();
-		}
-        */
 
 		//Directory Chooser
 		JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -70,8 +60,5 @@ public class ListenerButtonSaveCanvas implements ActionListener {
 				System.out.println(e.getStackTrace());
 			}
 		}
-		//
-
-
 	}
 }

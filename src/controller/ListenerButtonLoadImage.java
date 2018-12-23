@@ -47,6 +47,7 @@ public class ListenerButtonLoadImage implements ActionListener {
 			}
 
 			ListenerPanelDrawing.getGraphics().drawImage(bufferedImage, 0, 0, panel);
+			panel.repaint();
 		}
 	}
 }
