@@ -32,10 +32,11 @@ public class SQLiteConnection {
 		} else
 			return SQLITE;
 	}
-	
+
 	public void disconnect() {
 		try {
 			CONNECTION.close();
+			CONNECTION = null;
 			System.out.println("Disconnected");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,28 +49,46 @@ public class SQLiteConnection {
 		try {
 			Statement statement = CONNECTION.createStatement();
 			statement.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Color " + name + " added successfully", "Info",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Color " + name + " added successfully", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public Color getColor(String colorName) {
+		String query = "SELECT * FROM custom_colors WHERE name='" + colorName + "';";
+		try {
+			Statement statement = CONNECTION.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			if (resultSet.next()) {
+				int red = resultSet.getInt(1);
+				int green = resultSet.getInt(2);
+				int blue = resultSet.getInt(3);
+				int alpha = resultSet.getInt(4);
+				return new Color(red, green, blue, alpha);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	// This method is for testing purposes
 	public void getColors() {
 		String query = "SELECT * FROM custom_colors";
 		try {
 			Statement statement = CONNECTION.createStatement();
 			ResultSet resultSet = statement.executeQuery(query);
 			while (resultSet.next()) {
-				System.out.println("Red: " + resultSet.getInt(1)
-							 + ", Green: " + resultSet.getInt(2)
-							 + ", Blue: "  + resultSet.getInt(3)
-							 + ", Alpha: " + resultSet.getInt(4));
+				System.out.println("Red: " + resultSet.getInt(1) + ", Green: " + resultSet.getInt(2) + ", Blue: "
+						+ resultSet.getInt(3) + ", Alpha: " + resultSet.getInt(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public HashMap<String, Color> getColorsMap() {
 		HashMap<String, Color> colors = new HashMap<String, Color>();
 		String query = "SELECT * FROM custom_colors";
@@ -90,18 +109,19 @@ public class SQLiteConnection {
 		}
 		return colors;
 	}
-	
+
 	public void deleteColor(String colorName) {
 		String query = "DELETE FROM custom_colors WHERE name='" + colorName + "';";
 		try {
 			Statement statement = CONNECTION.createStatement();
 			statement.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, colorName + " has been deleted!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, colorName + " has been deleted!", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean colorExists(String colorName) {
 		String query = "SELECT name FROM custom_colors WHERE name='" + colorName + "';";
 		try {

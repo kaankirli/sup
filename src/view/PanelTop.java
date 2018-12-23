@@ -99,17 +99,17 @@ public class PanelTop extends JPanel {
 
 	private void saveColorClicked(Color color) {
 		try {
+			SQLiteConnection connection = SQLiteConnection.getInstance();
 			String name = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Info",
 					JOptionPane.OK_CANCEL_OPTION);
 			int red = color.getRed();
 			int green = color.getGreen();
 			int blue = color.getBlue();
 			int alpha = color.getAlpha();
-			if (!name.isEmpty()) {
-				SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
+			if (!name.isEmpty() && !connection.colorExists(name)) {
 				connection.saveColor(red, green, blue, alpha, name);
 			} else {
-				JOptionPane.showMessageDialog(null, "Please enter a name!", "Warning", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Please enter a non duplicate name!", "Warning", JOptionPane.WARNING_MESSAGE);
 			}
 		} catch (NullPointerException e) {
 		}
@@ -122,9 +122,10 @@ public class PanelTop extends JPanel {
 		gbc.gridx = gbc.gridy = 0;
 		gbc.insets = new Insets(2, 2, 2, 2);
 		customColors = SQLiteConnection.getInstance().getColorsMap();
+		Object[] keys = customColors.keySet().toArray();
 
 		for (int i = 0; i < customColors.size(); ++i) {
-			JLabel colorLable = new JLabel(customColors.keySet().toArray()[i].toString());
+			JLabel colorLable = new JLabel(keys[i].toString());
 			Border border = BorderFactory.createLineBorder(Color.BLACK);
 			colorLable.setBorder(border);
 			colorLable.addMouseListener(new MouseAdapter() {
@@ -152,9 +153,10 @@ public class PanelTop extends JPanel {
 		gbc.gridx = gbc.gridy = 0;
 		gbc.insets = new Insets(2, 2, 2, 2);
 		customColors = SQLiteConnection.getInstance().getColorsMap();
+		Object[] keys = customColors.keySet().toArray();
 
 		for (int i = 0; i < customColors.size(); ++i) {
-			JLabel colorLable = new JLabel(customColors.keySet().toArray()[i].toString());
+			JLabel colorLable = new JLabel(keys[i].toString());
 			Border border = BorderFactory.createLineBorder(Color.BLACK);
 			colorLable.setBorder(border);
 			colorLable.addMouseListener(new MouseAdapter() {
