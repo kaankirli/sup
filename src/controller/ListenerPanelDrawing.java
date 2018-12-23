@@ -35,6 +35,10 @@ public class ListenerPanelDrawing extends MouseAdapter {
 		}
 	}
 
+	public static Graphics getGraphics() {
+		return graphics;
+	}
+
 	public static void emptyPanel() {
 		graphics.setColor(Color.WHITE);
 		graphics.fillRect(0, 0, panelDrawing.getWidth(), panelDrawing.getHeight());

@@ -21,6 +21,7 @@ public class PanelTop extends JPanel {
 	private ButtonClear buttonClear;
 	private ButtonCustomColor buttonCustomColor;
 	private ButtonSaveCanvas buttonSaveCanvas;
+	private ButtonLoadImage buttonLoadImage;
 	private Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE,
 			Color.PINK };
 	HashMap<String, Color> customColors;
@@ -35,6 +36,7 @@ public class PanelTop extends JPanel {
 		buttonCustomColor = new ButtonCustomColor();
 		buttonCustomColor.addActionListener(e -> setColorSelectingFrame());
 		buttonSaveCanvas = new ButtonSaveCanvas(panelDrawing);
+		buttonLoadImage = new ButtonLoadImage(panelDrawing);
 
 		int index = 0;
 		for (Color color : colors) {
@@ -61,8 +63,11 @@ public class PanelTop extends JPanel {
 		buttonCustomColor.setBounds(290 + (++index) * 30, 20, 120, 20);
 		add(buttonCustomColor);
 
-		buttonSaveCanvas.setBounds(390 + (++index) * 30, 20, 120, 20);
+		buttonSaveCanvas.setBounds(390 + (++index) * 30, 20, 60, 20);
 		add(buttonSaveCanvas);
+
+		buttonLoadImage.setBounds(430 + (++index) * 30, 20, 60, 20);
+		add(buttonLoadImage);
 
 		Operations operations = new Operations();
 		operations.addListenerTo(buttonClear, panelDrawing);

@@ -4,6 +4,9 @@ import view.ButtonSaveCanvas;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -44,18 +47,31 @@ public class ListenerButtonSaveCanvas implements ActionListener {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 		String dateString = dateFormat.format(date);
 
+		//Default save path -- Old solution
+        /*
 		File file = new File(pathName);
 		boolean exists = file.exists();
 		if (!exists) {
 
 			file.mkdirs();
 		}
-		try {
+        */
 
+		//Directory Chooser
+		JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnValue = fileChooser.showOpenDialog(null);
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
 
-			ImageIO.write(imagebuf, "jpeg", new File(pathName + dateString + ".jpeg"));
-		} catch (Exception e) {
-			System.out.println("error");
+			try {
+
+				ImageIO.write(imagebuf, "jpeg", new File(fileChooser.getSelectedFile().getAbsolutePath() + "/" + dateString + ".jpeg"));
+			} catch (Exception e) {
+				System.out.println(e.getStackTrace());
+			}
 		}
+		//
+
+
 	}
 }

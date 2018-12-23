@@ -13,5 +13,6 @@ public class ButtonSaveCanvas extends JButton {
 		ListenerButtonSaveCanvas listener = new ListenerButtonSaveCanvas();
 		listener.setCanvas(panel);
 		addActionListener(listener);
+		setMargin(new Insets(0,0,0,0));
 	}
 }
