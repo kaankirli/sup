@@ -2,7 +2,6 @@ package model;
 
 import controller.ListenerButtonClear;
 import controller.ListenerPanelDrawing;
-import view.ButtonClear;
 import view.PanelDrawing;
 
 import javax.swing.*;
