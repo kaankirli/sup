@@ -134,5 +134,15 @@ public class SQLiteConnection {
 		}
 		return false;
 	}
+	
+	public void deleteAllCustomColors() {
+		String query = "DELETE FROM custom_colors";
+		try {
+			Statement statement = CONNECTION.createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

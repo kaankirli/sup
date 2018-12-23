@@ -1,15 +1,12 @@
 package view;
 
 import model.Operations;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import SQLConnection.SQLiteConnection;
 import controller.ListenerButtonColor;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -84,6 +81,7 @@ public class PanelTop extends JPanel {
 		saveColor.addActionListener(e -> saveColorClicked(colorChooser.getColor()));
 		selectCustomColor.addActionListener(e -> selectCustomColorClicked());
 		deleteCustomColor.addActionListener(e -> deleteCustomColorClicked());
+		deleteAllCustomColors.addActionListener(e -> deleteAllCustomColorsClicked());
 
 		topPanel.add(saveColor);
 		topPanel.add(selectCustomColor);
@@ -179,7 +177,11 @@ public class PanelTop extends JPanel {
 	}
 
 	private void deleteAllCustomColorsClicked() {
-
+		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete ALL your custom colors?", "Warning!", JOptionPane.YES_NO_OPTION);
+		if (option == JOptionPane.OK_OPTION) {
+			SQLiteConnection.getInstance().deleteAllCustomColors();
+			JOptionPane.showMessageDialog(null, "All custom colors deleted!", "Info", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 }
