@@ -34,7 +34,7 @@ public class HelperImageBrush {
 
 		for (int i = 0; i < pixels.length; i++) {
 			for (int j = 0; j < pixels[0].length; j++) {
-				if (isInBrush(i, j, pixels))
+				if (pixels[i][j] != 0 || isInBrush(i, j, pixels))
 					paint.setRGB(i, j, color.getRGB());
 			}
 		}

@@ -3,6 +3,8 @@ package view;
 import controller.ListenerTextField;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TextFieldBrushSize extends JTextField {
 
@@ -17,6 +19,7 @@ public class TextFieldBrushSize extends JTextField {
 		setText("30");
 
 		addMouseWheelListener(new ListenerTextField());
+		addMouseListener(new ListenerTextField());
 	}
 
 	public static int getBrushSize() {
@@ -24,8 +27,8 @@ public class TextFieldBrushSize extends JTextField {
 		try {
 			size = Integer.parseInt(brushSize.getText());
 			if (size < 1) {
-				size = 1;
-				brushSize.setText("1");
+				size = 10;
+				brushSize.setText("10");
 			} else if (size > 200) {
 				size = 200;
 				brushSize.setText("200");
@@ -36,7 +39,7 @@ public class TextFieldBrushSize extends JTextField {
 		}
 		return size;
 	}
-	
+
 	public static void setBrushSize(int size) {
 		if (size > 0 && size <= 200)
 			brushSize.setText("" + size);
