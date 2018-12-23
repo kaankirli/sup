@@ -23,7 +23,8 @@ public class PanelTop extends JPanel {
 
 	private ButtonClear buttonClear;
 	private ButtonCustomColor buttonCustomColor;
-	private Color[] colors = {Color.BLACK, Color.WHITE, Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.PINK};
+	private Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE,
+			Color.PINK };
 	HashMap<String, Color> customColors;
 
 	public PanelTop(PanelDrawing panelDrawing) {
@@ -50,9 +51,9 @@ public class PanelTop extends JPanel {
 		add(TextFieldBrushSize.getInstance());
 		add(buttonClear);
 
-        ButtonImportCursor buttonImportCursor = new ButtonImportCursor();
-        buttonImportCursor.setBounds(90 + (++index) * 30, 20, 120, 20);
-        add(buttonImportCursor);
+		ButtonImportCursor buttonImportCursor = new ButtonImportCursor();
+		buttonImportCursor.setBounds(90 + (++index) * 30, 20, 120, 20);
+		add(buttonImportCursor);
 
 		ButtonChooseCursor buttonChooseCursor = new ButtonChooseCursor();
 		buttonChooseCursor.setBounds(190 + (++index) * 30, 20, 120, 20);
@@ -64,13 +65,14 @@ public class PanelTop extends JPanel {
 		Operations operations = new Operations();
 		operations.addListenerTo(buttonClear, panelDrawing);
 	}
-	
+
 	private void setColorSelectingFrame() {
 		JFrame customColorFrame = new JFrame("Custom Color");
 		JPanel topPanel = new JPanel();
 		JButton saveColor = new JButton("Save Color");
 		JButton selectCustomColor = new JButton("Select Custom Color");
 		JButton deleteCustomColor = new JButton("Delete Custom Color");
+		JButton deleteAllCustomColors = new JButton("Delete All Custom Colors");
 		JColorChooser colorChooser = new JColorChooser();
 		colorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
 			@Override
@@ -78,14 +80,15 @@ public class PanelTop extends JPanel {
 				ListenerButtonColor.cursorColor = colorChooser.getColor();
 			}
 		});
-		
+
 		saveColor.addActionListener(e -> saveColorClicked(colorChooser.getColor()));
 		selectCustomColor.addActionListener(e -> selectCustomColorClicked());
-		deleteCustomColor.addActionListener(e -> deleteCustomColor());
-		
+		deleteCustomColor.addActionListener(e -> deleteCustomColorClicked());
+
 		topPanel.add(saveColor);
 		topPanel.add(selectCustomColor);
 		topPanel.add(deleteCustomColor);
+		topPanel.add(deleteAllCustomColors);
 		customColorFrame.add(topPanel, BorderLayout.NORTH);
 		customColorFrame.add(colorChooser);
 		customColorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -93,10 +96,11 @@ public class PanelTop extends JPanel {
 		customColorFrame.setLocationRelativeTo(null);
 		customColorFrame.setVisible(true);
 	}
-	
+
 	private void saveColorClicked(Color color) {
 		try {
-			String name = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Info", JOptionPane.OK_CANCEL_OPTION);
+			String name = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Info",
+					JOptionPane.OK_CANCEL_OPTION);
 			int red = color.getRed();
 			int green = color.getGreen();
 			int blue = color.getBlue();
@@ -107,9 +111,10 @@ public class PanelTop extends JPanel {
 			} else {
 				JOptionPane.showMessageDialog(null, "Please enter a name!", "Warning", JOptionPane.WARNING_MESSAGE);
 			}
-		} catch (NullPointerException e) { }
+		} catch (NullPointerException e) {
+		}
 	}
-	
+
 	private void selectCustomColorClicked() {
 		JFrame selectColorFrame = new JFrame("Select Custom Color");
 		selectColorFrame.setLayout(new GridBagLayout());
@@ -117,7 +122,7 @@ public class PanelTop extends JPanel {
 		gbc.gridx = gbc.gridy = 0;
 		gbc.insets = new Insets(2, 2, 2, 2);
 		customColors = SQLiteConnection.getInstance().getColorsMap();
-		
+
 		for (int i = 0; i < customColors.size(); ++i) {
 			JLabel colorLable = new JLabel(customColors.keySet().toArray()[i].toString());
 			Border border = BorderFactory.createLineBorder(Color.BLACK);
@@ -133,23 +138,46 @@ public class PanelTop extends JPanel {
 			selectColorFrame.add(colorLable, gbc);
 			gbc.gridy++;
 		}
-		
+
 		selectColorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		selectColorFrame.pack();
 		selectColorFrame.setLocationRelativeTo(null);
 		selectColorFrame.setVisible(true);
 	}
-	
-	private void deleteCustomColor() {
-		try {
-			String colorName = JOptionPane.showInputDialog(null, "Enter the name of your color.", "Delete Color", JOptionPane.OK_CANCEL_OPTION);
-			if (!colorName.isEmpty()) {
-				SQLiteConnection connection = (SQLiteConnection) SQLiteConnection.getInstance();
-				connection.deleteColor(colorName);
-			} else {
-				JOptionPane.showMessageDialog(null, "Please enter a name!", "Warning", JOptionPane.WARNING_MESSAGE);
-			}
-		} catch (NullPointerException e) { }
+
+	private void deleteCustomColorClicked() {
+		JFrame deleteColorFrame = new JFrame("Delete Custom Color");
+		deleteColorFrame.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = gbc.gridy = 0;
+		gbc.insets = new Insets(2, 2, 2, 2);
+		customColors = SQLiteConnection.getInstance().getColorsMap();
+
+		for (int i = 0; i < customColors.size(); ++i) {
+			JLabel colorLable = new JLabel(customColors.keySet().toArray()[i].toString());
+			Border border = BorderFactory.createLineBorder(Color.BLACK);
+			colorLable.setBorder(border);
+			colorLable.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+					String colorName = colorLable.getText();
+					SQLiteConnection.getInstance().deleteColor(colorName);
+					deleteColorFrame.dispose();
+					deleteCustomColorClicked();
+				}
+			});
+			deleteColorFrame.add(colorLable, gbc);
+			gbc.gridy++;
+		}
+
+		deleteColorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		deleteColorFrame.pack();
+		deleteColorFrame.setLocationRelativeTo(null);
+		deleteColorFrame.setVisible(true);
 	}
-	
+
+	private void deleteAllCustomColorsClicked() {
+
+	}
+
 }

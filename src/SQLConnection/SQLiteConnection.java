@@ -87,7 +87,7 @@ public class SQLiteConnection {
 		try {
 			Statement statement = CONNECTION.createStatement();
 			statement.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Custom Color " + colorName + " has been deleted!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, colorName + " has been deleted!", "Info", JOptionPane.INFORMATION_MESSAGE);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
