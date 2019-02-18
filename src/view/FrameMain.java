@@ -10,7 +10,7 @@ public class FrameMain extends JFrame {
 	private PanelTop panelTop;
 
 	public FrameMain() {
-
+		super("SuperPaint by TMS Coop");
 		setSize(1000, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
